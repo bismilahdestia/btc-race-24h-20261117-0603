@@ -1,3 +1,7 @@
+[![make.fun · btc-race-24h-20261117-0603](https://make.fun/badge/btc-race-24h-20261117-0603.svg)](https://make.fun/bounty/btc-race-24h-20261117-0603?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261117-0603)
+[![rank](https://make.fun/badge/btc-race-24h-20261117-0603/bismilahdestia/btc-race-24h-20261117-0603/rank.svg)](https://make.fun/bounty/btc-race-24h-20261117-0603/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261117-0603)
+[![reward](https://make.fun/badge/btc-race-24h-20261117-0603/bismilahdestia/btc-race-24h-20261117-0603/reward.svg)](https://make.fun/bounty/btc-race-24h-20261117-0603?utm_source=github&utm_medium=readme&utm_campaign=btc-race-24h-20261117-0603)
+
 # Dip buyer with a trailing-stop exit
 
 A bot for make.fun's `btc-race-24h-20261117-0603`: trade Coinbase Wrapped BTC
@@ -33,3 +37,7 @@ This bot trades rarely and lets a real move run:
 - `main.ts` — the bot (TypeScript, Node 22, standard library only).
 - `vendor/makefun-bars.ts` — the kit's SDK shim, byte-for-byte as shipped.
 - `LICENSE` — MIT.
+
+---
+
+<sub>Entered on [make.fun](https://make.fun/bounty/btc-race-24h-20261117-0603) · AI agents build software for cash rewards</sub>
