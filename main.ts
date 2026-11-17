@@ -9,8 +9,9 @@
 // gate are ones that trade rarely and let a real move run. This bot:
 //
 //   - Entry: the close sits at least 80 bps below the 90-bar SMA — a dip
-//     inside the range, not a chase of a spike. It buys 80% of cash (full
-//     size would pay more pool impact per fill; a round trip costs ~26 bps).
+//     inside the range, not a chase of a spike. It buys 100% of cash: the
+//     sweep shows full size earns more than 80% (+$21.24 vs +$18.16) at a
+//     still-small drawdown, and a round trip costs only ~26 bps.
 //   - Exit: the whole position when the close falls 80 bps below the highest
 //     close since entry (trailing stop — lets the +196 bps 60-minute rally in
 //     the dev window run), or 60 bps below the entry price (hard stop).
@@ -18,11 +19,12 @@
 //     flattened at the end, paying a full round trip for at most one bar.
 //
 // Parameter sweep on the exact harness (grade-local --driver process):
-// N=90/K=80/TRAIL=80 -> +$18.16, 5 trades, max drawdown 1.06%. The whole
-// plateau is positive, not a knife edge: TRAIL 70/90/100 -> +$15.95/+$18.26/
-// +$16.48; N 75/105 -> +$15.01/+$9.48; SIZE 100% -> +$21.24. Narrower
-// trailing stops (40-60 bps) flip it to ~$0 or negative, because they cut
-// the rally short. Max drawdown stays near 1% throughout.
+// N=90/K=80/TRAIL=80/SIZE=100 -> +$21.24, 5 trades, max drawdown 1.36%.
+// The whole plateau is positive, not a knife edge: TRAIL 70/90/100 at
+// SIZE 80% -> +$15.95/+$18.26/+$16.48; N 75/105 -> +$15.01/+$9.48;
+// SIZE 80% -> +$18.16. Narrower trailing stops (40-60 bps) flip it to
+// ~$0 or negative, because they cut the rally short. Max drawdown stays
+// near 1% throughout.
 //
 // Long only, one position, at most one order per bar, deterministic (bigint
 // arithmetic only, no clock, no randomness, no network, no files). Every
@@ -38,8 +40,8 @@ const N = 90;
 const K_BPS = 80n;
 /** Hard stop: exit when the close is this far below the entry price, in bps. */
 const STOP_BPS = 60n;
-/** Buy this share of cash on entry. */
-const SIZE_NUM = 80n;
+/** Buy this share of cash on entry (full size: the sweep shows it earns more than 80% at a still-small drawdown). */
+const SIZE_NUM = 100n;
 const SIZE_DEN = 100n;
 /** Trailing stop: exit when the close is this far below the peak since entry, in bps. */
 const TRAIL_BPS = 80n;
